@@ -24,4 +24,9 @@ class Admin extends Model
         //return $this->belongsTo('AdminLog');
     }
 
+    public function checkLogin(){
+        //return
+
+    }
+
 }
