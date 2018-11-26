@@ -16,6 +16,11 @@ use think\Db;
 class AdminLogController extends Controller
 {
 
+    public function t(){
+
+        return $this->fetch();
+    }
+
     public function viewTest($page)
     {
         //$adminLogs = AdminModel::get('1=1', 'admin');
