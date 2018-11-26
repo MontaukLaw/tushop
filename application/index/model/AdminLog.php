@@ -18,5 +18,16 @@ class AdminLog extends Model
     // 开启自动写入时间戳
     protected $autoWriteTimestamp = true;
 
+    public function admin()
+    {
+        // 用户HAS ONE档案关联
+        return $this->belongsTo('Admin');
+        //return $this->hasOne('Admin');
+    }
+
+    public static function getAllAdminLogWithAdminName()
+    {
+        return self::with('Admin')->order('log_time','desc')->select();
+    }
 
 }
