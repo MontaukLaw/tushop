@@ -19,12 +19,17 @@
 <body class="text-center">
 <div class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">请登陆</h1>
-    <label for="inputUsername" class="sr-only">用户名</label>
-    <input type="userName" id="inputUsername" class="form-control" placeholder="User Name" required autofocus
+    <label for="inputUsername">用户名</label>
+    <input id="inputUsername" class="form-control" placeholder="User Name" required autofocus
            value="admin">
-    <label for="inputPassword" class="sr-only">Password</label>
+
+    <label for="inputPassword">密码</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password"
            value="519475228fe35ad067744465c42a19b2" required>
+
+    <label for="inputCaptcha">验证码</label>
+    <div>{:captcha_img()}</div>
+    <input id="inputCaptcha" class="form-control" required>
     <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> 记住我
@@ -55,6 +60,7 @@
         }
 
     }
+
 
     function checkLogin() {
         //console.info('我怎么成了前端了, 麻痹的');

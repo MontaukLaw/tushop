@@ -12,6 +12,7 @@ use app\index\model\Admin as AdminModel;
 
 use think\Controller;
 use app\util\JsonMsg;
+use think\Verify;
 
 class AdminController extends Controller
 {
@@ -40,6 +41,22 @@ class AdminController extends Controller
         $arr = [$jmsg];
         //dump($jmsg);
         return json($jmsg);
+    }
+
+    /**
+     * 验证码获取
+     */
+    public function vertify()
+    {
+        $config = array(
+            'fontSize' => 30,
+            'length' => 4,
+            'useCurve' => true,
+            'useNoise' => false,
+            'reset' => false
+        );
+        $Verify = new Verify($config);
+        $Verify->entry("admin_login");
     }
 
 }
