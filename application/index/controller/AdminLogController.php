@@ -17,7 +17,15 @@ class AdminLogController extends Controller
 
     public function viewTest()
     {
-        return $this->fetch();
+        $adminLogs = AdminModel::all();
+
+        //$log = M('AdminModel');
+        //$logs = $log->limit(10)->select();
+
+        return view()->assign('list', $adminLogs);
+        //return view()->assign('list', $logs);
+
+        //return $this->fetch();
     }
 
     public function getAllAdminLog()
