@@ -8,7 +8,7 @@
 
 namespace app\index\controller;
 
-
+use app\util\JsonMsg;
 use think\Controller;
 
 class CaptchaController extends Controller
@@ -20,13 +20,18 @@ class CaptchaController extends Controller
     }
 
     // 验证码检测
-    public function check($code='')
+    public function check($code = '')
     {
+        //准备输出用的msg
+        $jmsg = new JsonMsg;
         $captcha = new \think\captcha\Captcha();
         if (!$captcha->check($code)) {
-            $this->error('验证码错误');
+            $jmsg->setSuccess(false);
+            $jmsg->setMsg('验证码错误');
         } else {
-            $this->success('验证码正确');
+            $jmsg->setSuccess(true);
         }
+
+        return json($jmsg);
     }
 }

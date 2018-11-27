@@ -62,17 +62,9 @@
     }
 
 
-    function checkLogin() {
-        //console.info('我怎么成了前端了, 麻痹的');
+    function checkUserPassword() {
         var username = $('#inputUsername').val();
         var password = $('#inputPassword').val();
-
-        //if (simpleVerify(username, password)) {
-        //return;
-        // }
-
-        //console.info(username);
-        //console.info(password);
 
         $.ajax({
             url: 'loginCheck.html',
@@ -81,7 +73,7 @@
             success: function (res) {
                 //这里应该有个json转js obj的过程
                 console.info(res);
-                if (res.success == 1) {
+                if (res.success) {
                     //top.location.href = res.url;
                     console.info('用户存在');
                 } else {
@@ -92,8 +84,61 @@
                 alert('网络失败，请刷新页面后重试');
             }
         });
+    }
+
+
+    function checkLogin() {
+
+        checkCaptcha();
+        //console.info('我怎么成了前端了, 麻痹的');
+
+
+        //if (simpleVerify(username, password)) {
+        //return;
+        // }
+
+        //console.info(username);
+        //console.info(password);
+
+        //if (checkCaptcha()) {
+        //  console.info('code is good, checking u/p');
+        //checkUserPassword();
+
+        //}
+    }
+
+    function checkCaptcha() {
+        var ifCodeCorrect = false;
+        var code = $('#inputCaptcha').val();
+
+        $.ajax({
+            url: '../captcha/check',
+            data: {code: code},
+            type: 'post',
+            success: function (res) {
+                if (res.success) {
+                    console.info(res);
+                    ifCodeCorrect = true;
+
+                    //由于ajax是异步的, 没法等它回应结果之后做判断, 所以只能写成嵌套形式, 我个人非常不喜欢, 但是业务逻辑上也说得过去倒是.
+                    //另外搞好函数封装, 看上去也没那么乱,如果把出错信息再包装一下就完美了.
+                    checkUserPassword();
+
+                    //return ifCodeCorrect;
+                } else {
+                    alert('验证码错误');
+                    //return ifCodeCorrect;
+                }
+            },
+            error: function () {
+
+                alert('网络失败，请刷新页面后重试');
+                //return ifCodeCorrect;
+            }
+        });
 
     }
+
 </script>
 </body>
 
