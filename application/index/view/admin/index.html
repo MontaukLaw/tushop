@@ -28,7 +28,8 @@
            value="519475228fe35ad067744465c42a19b2" required>
 
     <label for="inputCaptcha">验证码</label>
-    <div>{:captcha_img()}</div>
+    <div id="changeCaptcha">{:captcha_img()}</div>
+
     <input id="inputCaptcha" class="form-control" required>
     <div class="checkbox mb-3">
         <label>
@@ -48,9 +49,20 @@
 
     $(function () {
 
+        $('#changeCaptcha').click(function () {
+            //console.info('change captcha');
+            //刷新验证码
+            refreshCaptcha();
+        });
+
         //console.info($('#inputUsername').val());
 
     });
+
+    function refreshCaptcha() {
+
+        $('#changeCaptcha').find('img').attr('src', '/public/index.php/captcha.html?r=' + Math.floor(Math.random() * 100));
+    }
 
     function simpleVerify(username, password) {
 
@@ -90,6 +102,7 @@
     function checkLogin() {
 
         checkCaptcha();
+
         //console.info('我怎么成了前端了, 麻痹的');
 
 
@@ -123,16 +136,18 @@
                     //由于ajax是异步的, 没法等它回应结果之后做判断, 所以只能写成嵌套形式, 我个人非常不喜欢, 但是业务逻辑上也说得过去倒是.
                     //另外搞好函数封装, 看上去也没那么乱,如果把出错信息再包装一下就完美了.
                     checkUserPassword();
-
+                    refreshCaptcha();
                     //return ifCodeCorrect;
                 } else {
                     alert('验证码错误');
+                    refreshCaptcha();
                     //return ifCodeCorrect;
                 }
             },
             error: function () {
 
                 alert('网络失败，请刷新页面后重试');
+                refreshCaptcha();
                 //return ifCodeCorrect;
             }
         });
