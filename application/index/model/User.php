@@ -30,6 +30,7 @@ class User extends Model
         $result = Db::table('ty_users')
             ->alias('users')
             ->join('ty_user_level level', 'users.level = level.level_id')
+            ->order('reg_time', 'desc')
             ->paginate($pageConfig);
         //->select();
 
@@ -73,6 +74,10 @@ class User extends Model
     public function add($data)
     {
         return Db::table('ty_users')->insert($data);
+    }
+
+    public function remove($id){
+        return Db::delete();
     }
 
 }

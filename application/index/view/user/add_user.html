@@ -79,7 +79,7 @@
                     <tr>
                         <td>手机:</td>
                         <td>
-                            <input type="text" class="form-control" name="mobile">
+                            <input type="text" class="form-control" name="mobile" id="mobileInput">
                         </td>
                         <td>前台登陆账号，手机邮箱任意一项都可以</td>
                     </tr>
@@ -127,26 +127,22 @@
 
 
     function save() {
-        var sex;
-        if (sexInput0)
-            $.post(
-                'saveUser',
-                {
-                    nick_name: $('#nickNameInput').val(),
-                    password: $('#passwordInput').val(),
-                    qq: $('#qqInput').val(),
-                    email: $('#emailInput').val(),
-                    sex: $("input[name='sex']:checked").val(),
-                    mobile: $('input[name="mobile"]').val()
-                },
-                function (data) {
-                    console.info(data);
-                }
-            );
-
+        $.post(
+            'saveUser',
+            {
+                nick_name: $('#nickNameInput').val(),
+                password: $('#passwordInput').val(),
+                qq: $('#qqInput').val(),
+                email: $('#emailInput').val(),
+                sex: $("input[name='sex']:checked").val(),
+                mobile: $('#mobileInput').val()
+            },
+            function (data) {
+                console.info(data);
+            }
+        );
 
     }
-
 
 </script>
 

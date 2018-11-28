@@ -21,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
-    <title>Hello, world!</title>
+    <title>会员列表</title>
 </head>
 <body>
 <h2 class="sub-header">会员列表(User表)</h2>
@@ -50,6 +50,13 @@
             <td>{$vo.email}</td>
             <td>{$vo.reg_time|date="Y-m-d H:i:s",###}</td>
             <td><a href="{$vo.user_id}">用户详情</a></td>
+            <td>
+                <div class="delete_div">
+                    <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal"
+                       name="{$vo.user_id}">删除</a>
+                </div>
+
+            </td>
         </tr>
         {/foreach}
         </tbody>
@@ -76,6 +83,60 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<!-- 模态框（Modal） -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title" id="myModalLabel">确定删除?</h5>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" id="delete_confirm_btn">确定</button>
+                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+
+    var deleteUrl = '';
+    var deleteUrlBase = 'user/removeUserByID';
+
+    $(function () {
+
+        $('.delete_div').children('a').click(function () {
+            //console.info('clicked');
+            //console.info(this.name);
+            deleteUrl = deleteUrlBase + '?id=' + this.name;
+
+            console.info(deleteUrl);
+
+        });
+
+        $('#delete_confirm_btn').click(function () {
+            $.get(
+                deleteUrl,
+                function (res) {
+                    if (res.success) {
+                        //console.info(res);
+                        //隐藏弹出窗
+                        $('#myModal').modal('hide');
+                        //重载窗口
+                        window.location.reload();
+                    }
+                }
+            );
+
+        });
+    });
+
+
+</script>
+
 
 </body>
 </html>

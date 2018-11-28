@@ -52,6 +52,7 @@ class UserController extends Controller
         $result = Db::table('ty_users')
             ->alias('users')
             ->join('ty_user_level level', 'users.level = level.level_id')
+            ->order('reg_time', 'desc')
             ->select();
 
         return json($result);
@@ -79,6 +80,18 @@ class UserController extends Controller
 
         $result = $user->add($data);
 
+        $jmsg = new JsonMsg($result);
+
+        return json($jmsg);
+
+    }
+
+    public function removeUserByID($id)
+    {
+
+        //$user = new UserModel;
+
+        $result = UserModel::destroy($id);
         $jmsg = new JsonMsg($result);
 
         return json($jmsg);
