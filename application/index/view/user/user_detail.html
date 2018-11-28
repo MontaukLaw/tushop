@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--  先注释掉
+       <!-- Bootstrap CSS
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template
+    <link href="/public/css/dashboard.css" rel="stylesheet">
+    -->
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <title>Hello, world!</title>
+</head>
+<body>
+<h2 class="sub-header">会员详细信息</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td class="col-sm-2">会员昵称:</td>
+            <td><input type="text" class="form-control" name="nickname" value="{$user.nickname}"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>用户积分:</td>
+            <td>{$user.pay_points} <span style="margin-left:100px;">账户余额：{$user.user_money}</span></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>邮件地址:</td>
+            <td><input type="text" class="form-control" name="email" value="{$user.email}"></td>
+            <td>电子邮箱</td>
+        </tr>
+        <tr>
+            <td>新密码:</td>
+            <td><input type="password" class="form-control" name="password"></td>
+            <td>留空表示不修改密码</td>
+        </tr>
+        <tr>
+            <td>确认密码:</td>
+            <td><input type="password" class="form-control" name="password2"></td>
+            <td>留空表示不修改密码</td>
+        </tr>
+        <tr>
+            <td>性别:</td>
+            <td id="order-status">
+                <input name="sex" type="radio" value="0"
+                       {if condition="$user['sex'] eq 0" }checked{/if}
+                >保密
+                <input name="sex" type="radio" value="1"
+                       {if condition="$user['sex'] eq 1" }checked{/if}
+                >男
+                <input name="sex" type="radio" value="2"
+                       {if condition="$user['sex'] eq 2" }checked{/if}
+                >女
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>QQ:</td>
+            <td>
+                <input class="form-control" type="text" name="qq" value="{$user.qq}">
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>手机:</td>
+            <td>
+                <input type="text" class="form-control" name="mobile" value="{$user.mobile}">
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>冻结用户:</td>
+            <td>
+                <input name="is_lock" type="radio" value="1"
+                       {if condition="$user['is_lock'] eq 1" }checked{/if}
+                >是
+                <input name="is_lock" type="radio" value="0"
+                       {if condition="$user['is_lock'] eq 0" }checked{/if}
+                >否
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>注册时间:</td>
+            <td>
+                {$user.reg_time|date='Y-m-d H:i',###}
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否分销:</td>
+            <td id="order-status">
+                <input name="is_distribut" type="radio" value="1"
+                       {if condition="$user['is_distribut'] eq 1" checked{/if}>是
+                <input name="is_distribut" type="radio" value="0"
+                       {if condition="$user['is_distribut'] eq 0" }checked{/if}>否
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <table class="table table-bordered">
+
+                <tr>
+                    <td>用户余额:</td>
+                    <td>{$user.user_money}</td>
+                    <td>累积分佣金额:</td>
+                    <td>{$user.distribut_money}</td>
+                </tr>
+
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" class="btn btn-info">
+                            <i class="ace-icon fa fa-check bigger-110"></i> 保存
+                        </button>
+                        <a href="javascript:history.go(-1)" data-toggle="tooltip" title=""
+                           class="btn btn-default pull-right"
+                           data-original-title="返回"><i class="fa fa-reply"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 先注掉
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS
+<script src="/public/js/jquery.slim.min.js"></script>
+
+<script src="/public/js/popper.min.js"></script>
+
+<script src="/public/js/bootstrap.min.js"></script>
+-->
+
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

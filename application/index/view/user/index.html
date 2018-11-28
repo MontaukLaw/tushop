@@ -24,38 +24,42 @@
     <title>Hello, world!</title>
 </head>
 <body>
-<h2 class="sub-header">Admin Log</h2>
+<h2 class="sub-header">会员列表(User表)</h2>
 
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-            <th>角色名称</th>
-            <th>描述</th>
-            <th>IP</th>
-            <th>操作时间</th>
+            <th>会员昵称</th>
+            <th>会员等级</th>
+            <th>折扣</th>
+            <th>余额</th>
+            <th>邮件地址</th>
+            <th>注册日期</th>
         </tr>
         </thead>
         <tbody>
         {foreach $list as $key=>$vo}
         <tr>
-            <td>{$vo.log_id}</td>
-            <td>{$vo.admin.user_name}</td>
-            <td>{$vo.log_info}</td>
-            <th>{$vo.log_ip}</th>
-            <td>{$vo.log_time|date="Y-m-d H:i:s",###}</td>
+            <td>{$vo.user_id}</td>
+            <td>{$vo.nickname}</td>
+            <td>{$vo.level_name}</td>
+            <td>{$vo.discount}</td>
+            <td>{$vo.user_money}</td>
+            <td>{$vo.email}</td>
+            <td>{$vo.reg_time|date="Y-m-d H:i:s",###}</td>
+            <td><a href="{$vo.user_id}">用户详情</a></td>
         </tr>
         {/foreach}
         </tbody>
     </table>
 </div>
 
-
 <div class="row">
-    <div class="col-sm-4 text-left"></div>
+    <div class="col-sm-2 text-left"></div>
     <div class="col-sm-8 text-right">{$list->render()}</div>
-
+    <div class="col-sm-2 text-left"></div>
 </div>
 
 <!-- 先注掉

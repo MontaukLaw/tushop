@@ -16,9 +16,19 @@ class JsonMsg
     public $obj;
     public $msg;
 
-    public function __construct()
+    public function __construct($request)
     {
         $this->setSuccess(true);
+
+        if ($request > 0) {
+            $this->setSuccess(true);
+            $this->setMsg('OK');
+
+        } else {
+
+            $this->setSuccess(false);
+            $this->setMsg('ERROR');
+        }
     }
 
     /**
@@ -68,6 +78,5 @@ class JsonMsg
     {
         $this->msg = $msg;
     }
-
 
 }
