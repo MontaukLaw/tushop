@@ -69,7 +69,7 @@ class UserController extends Controller
 
         //$result = $user->allowField(['nick_name', 'email'])->save();
 
-        $data = ['nick_name' => $request->param('nick_name'),
+        $data = ['nick_name' => $request->param('nickname'),
             'password' => input('password'),
             'email' => input('email'),
             'qq' => input('qq'),

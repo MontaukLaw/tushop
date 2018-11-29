@@ -37,65 +37,65 @@
                 <h3 class="panel-title"><i class="fa fa-list"></i> 添加会员</h3>
             </div>
             <div class="panel-body">
+                <div id="add_user_form">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td class="col-sm-2">会员昵称:</td>
+                            <td><input type="text" class="form-control" name="nickname" value="" id="nickNameInput">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>登陆密码:</td>
+                            <td><input type="password" class="form-control" name="password" id="passwordInput"></td>
+                            <td>6-16位字母数字符号组合</td>
+                        </tr>
+                        <tr>
+                            <td>邮件地址:</td>
+                            <td><input type="text" class="form-control" name="email" value="" id="emailInput"></td>
+                            <td>前台登陆账号，手机邮箱任意一项都可以</td>
+                        </tr>
 
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <td class="col-sm-2">会员昵称:</td>
-                        <td><input type="text" class="form-control" name="nickname" value="" id="nickNameInput">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>登陆密码:</td>
-                        <td><input type="password" class="form-control" name="password" id="passwordInput"></td>
-                        <td>6-16位字母数字符号组合</td>
-                    </tr>
-                    <tr>
-                        <td>邮件地址:</td>
-                        <td><input type="text" class="form-control" name="email" value="" id="emailInput"></td>
-                        <td>前台登陆账号，手机邮箱任意一项都可以</td>
-                    </tr>
+                        <tr>
+                            <td>性别:</td>
+                            <td id="order-status">
+                                <input name="sex" type="radio" value="0" id="sexInput0" checked>
+                                保密
+                                <input name="sex" type="radio" value="1" id="sexInput1">
+                                男
+                                <input name="sex" type="radio" value="2" id="sexInput2">
+                                女
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>QQ:</td>
+                            <td>
+                                <input class="form-control" type="text" name="qq" id="qqInput">
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>手机:</td>
+                            <td>
+                                <input type="text" class="form-control" name="mobile" id="mobileInput">
+                            </td>
+                            <td>前台登陆账号，手机邮箱任意一项都可以</td>
+                        </tr>
 
-                    <tr>
-                        <td>性别:</td>
-                        <td id="order-status">
-                            <input name="sex" type="radio" value="0" id="sexInput0" checked>
-                            保密
-                            <input name="sex" type="radio" value="1" id="sexInput1">
-                            男
-                            <input name="sex" type="radio" value="2" id="sexInput2">
-                            女
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>QQ:</td>
-                        <td>
-                            <input class="form-control" type="text" name="qq" id="qqInput">
-                        </td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>手机:</td>
-                        <td>
-                            <input type="text" class="form-control" name="mobile" id="mobileInput">
-                        </td>
-                        <td>前台登陆账号，手机邮箱任意一项都可以</td>
-                    </tr>
-
-                    <tr>
-                        <td></td>
-                        <td>
-                            <button type="submit" class="btn btn-info" id="submit_btn">
-                                <i class="ace-icon fa fa-check bigger-110"></i> 保存
-                            </button>
-                            <input type="reset" class="btn btn-default pull-right" value="重置">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="submit" class="btn btn-info" id="submit_btn">
+                                    <i class="ace-icon fa fa-check bigger-110"></i> 保存
+                                </button>
+                                <input type="reset" class="btn btn-default pull-right" value="重置">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -121,28 +121,91 @@
         $('#submit_btn').click(function () {
             //console.info('submit');
             save();
+
+            //getFormData('add_user_form');
+            //getInputData();
         });
 
     });
 
+    function parseInput(inputs) {
+        var reqData = '';
+        if (inputs.length > 0) {
+            for (var i = 0; i < inputs.length; i++) {
+                reqData = reqData + inputs[i].name + '=' + inputs[i].value + '&';
+            }
+        }
+        return reqData;
+    };
+
+    function getInputData() {
+        var textInput = $(":text");
+        var singleInput = $(":checked");
+        var pwdInput = $(":password");
+
+        //console.info(textInput);
+        //console.info(singleInput);
+        //console.info(pwdInput);
+        var reqData = '';
+        //挨个组input内容
+        reqData = reqData + parseInput(textInput) + parseInput(singleInput) + parseInput(pwdInput);
+        //铲掉尾巴
+        reqData = reqData.substring(0, reqData.length - 1);
+        //console.info(reqData);
+
+        return reqData;
+    };
+
+    function getFormData(formName) {
+        var reqData = '';
+        var inputs = $("input");
+        //var inputs = $("#add_user_form").children("input");
+        for (var i = 0; i < inputs.length; i++) {
+            //console.info(inputs[i].type);
+            if (inputs[i].type == 'text' || inputs[i].type == 'password') {
+                //console.info('yes');
+                reqData = reqData + inputs[i].name + '=' + inputs[i].value + '&';
+            }
+            if (inputs[i].type == 'radio') {
+                if (inputs[i].checked) {
+                    console.info(inputs[i].value);
+                    reqData = reqData + inputs[i].name + '=' + inputs[i].value + '&';
+                }
+
+            }
+        }
+        reqData = reqData.substring(0, reqData.length - 1);
+        console.info(reqData);
+
+        //inputs.forEach(handler);
+
+        function handler(item) {
+            console.info(item);
+        }
+
+        //$.each(inputs, function (inputObj) {
+        //console.info(inputObj.name);
+        //})
+
+    };
+
 
     function save() {
-        $.post(
-            'saveUser',
-            {
-                nick_name: $('#nickNameInput').val(),
-                password: $('#passwordInput').val(),
-                qq: $('#qqInput').val(),
-                email: $('#emailInput').val(),
-                sex: $("input[name='sex']:checked").val(),
-                mobile: $('#mobileInput').val()
-            },
-            function (data) {
-                console.info(data);
-            }
-        );
 
-    }
+        var reqdata = getInputData();
+
+        console.info(reqdata);
+
+        $.ajax({
+            type: 'POST',
+            url: 'saveUser',
+            data: reqdata,
+            success: function (msg) {
+                alert("Data Saved: " + msg);
+            }
+        });
+
+    };
 
 </script>
 

@@ -26,7 +26,7 @@
             <td>{$vo.user_money}</td>
             <td>{$vo.email}</td>
             <td>{$vo.reg_time|date="Y-m-d H:i:s",###}</td>
-            <td><a class="btn btn-primary btn-sm" href="{$vo.user_id}">详情</a>
+            <td><a class="btn btn-primary btn-sm" href="user/userDetail?id={$vo.user_id}">详情</a>
                 <span class="delete_span">
                     <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"
                        name="{$vo.user_id}">删除</a>
@@ -39,11 +39,7 @@
     </table>
 </div>
 
-<div class="row">
-    <div class="col-sm-2 text-left"></div>
-    <div class="col-sm-8 text-right">{$list->render()}</div>
-    <div class="col-sm-2 text-left"></div>
-</div>
+{include file="Index@public/page"/}
 
 <!-- 先注掉
 <!-- Optional JavaScript

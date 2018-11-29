@@ -19,4 +19,9 @@ class PublicController extends Controller
         return $this->fetch();
     }
 
+    public function page()
+    {
+        return $this->fetch();
+    }
+
 }
