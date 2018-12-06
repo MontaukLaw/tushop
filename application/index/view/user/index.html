@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,32 +26,65 @@
 </head>
 <body>
 <h2 class="sub-header">Admin Log</h2>
+=======
+{include file="Index@public/head"/}
+
+<body>
+<h2 class="sub-header">会员列表(User表)</h2>
+>>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
 
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
+<<<<<<< HEAD
             <th>角色名称</th>
             <th>描述</th>
             <th>IP</th>
             <th>操作时间</th>
+=======
+            <th>会员昵称</th>
+            <th>会员等级</th>
+            <th>折扣</th>
+            <th>余额</th>
+            <th>邮件地址</th>
+            <th>注册日期</th>
+>>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
         </tr>
         </thead>
         <tbody>
         {foreach $list as $key=>$vo}
         <tr>
+<<<<<<< HEAD
             <td>{$vo.log_id}</td>
             <td>{$vo.admin.user_name}</td>
             <td>{$vo.log_info}</td>
             <th>{$vo.log_ip}</th>
             <td>{$vo.log_time|date="Y-m-d H:i:s",###}</td>
+=======
+            <td>{$vo.user_id}</td>
+            <td>{$vo.nickname}</td>
+            <td>{$vo.level_name}</td>
+            <td>{$vo.discount}</td>
+            <td>{$vo.user_money}</td>
+            <td>{$vo.email}</td>
+            <td>{$vo.reg_time|date="Y-m-d H:i:s",###}</td>
+            <td><a class="btn btn-primary btn-sm" href="user/userDetail?id={$vo.user_id}">详情</a>
+                <span class="delete_span">
+                    <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"
+                       name="{$vo.user_id}">删除</a>
+                </span>
+
+            </td>
+>>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
         </tr>
         {/foreach}
         </tbody>
     </table>
 </div>
 
+<<<<<<< HEAD
 
 <div class="row">
     <div class="col-sm-4 text-left"></div>
@@ -59,18 +93,50 @@
 
 <!-- 先注掉
 <!-- Optional JavaScript -->
+=======
+{include file="Index@public/page"/}
+
+<!-- 先注掉
+<!-- Optional JavaScript
+>>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
 <!-- jQuery first, then Popper.js, then Bootstrap JS
 <script src="/public/js/jquery.slim.min.js"></script>
 
 <script src="/public/js/popper.min.js"></script>
 
 <script src="/public/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
 -->
 
 <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+=======
+
+-->
+
+
+<!-- 模态框（Modal） -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h5 class="modal-title" id="myModalLabel">确定删除?</h5>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-sm" id="delete_confirm_btn">确定</button>
+                <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script src="/public/js/user/UserIndex.js"></script>
+>>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
 
 </body>
 </html>
