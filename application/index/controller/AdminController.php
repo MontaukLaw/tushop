@@ -25,20 +25,22 @@ class AdminController extends Controller
     public function loginCheck($username, $password)
     {
 
-        $jmsg = new JsonMsg;
+        $jmsg = null;
 
         //先组个data map
         $loginInput = ['user_name' => $username, 'password' => $password];
         //直接用get
         $admin = AdminModel::get($loginInput);
-
-        if (count($admin) > 0) {
-            $jmsg->setSuccess(true);
+        if ($admin != null) {
+            //if (count($admin) > 0) {
+            $jmsg = new JsonMsg(1);
+            //$jmsg->setSuccess(true);
         } else {
-            $jmsg->setSuccess(false);
-            $jmsg->setMsg('用户名密码不匹配');
+            $jmsg = new JsonMsg(0);
+            //$jmsg->setSuccess(false);
+            //$jmsg->setMsg('用户名密码不匹配');
         }
-        $arr = [$jmsg];
+        //$arr = [$jmsg];
         //dump($jmsg);
         return json($jmsg);
     }

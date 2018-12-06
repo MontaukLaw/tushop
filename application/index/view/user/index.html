@@ -1,68 +1,26 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--  先注释掉
-       <!-- Bootstrap CSS
-    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template
-    <link href="/public/css/dashboard.css" rel="stylesheet">
-    -->
-    <!-- Bootstrap -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-    <!--[if lt IE 9]>
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-    <title>Hello, world!</title>
-</head>
-<body>
-<h2 class="sub-header">Admin Log</h2>
-=======
 {include file="Index@public/head"/}
 
 <body>
 <h2 class="sub-header">会员列表(User表)</h2>
->>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
 
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-<<<<<<< HEAD
-            <th>角色名称</th>
-            <th>描述</th>
-            <th>IP</th>
-            <th>操作时间</th>
-=======
+
             <th>会员昵称</th>
             <th>会员等级</th>
             <th>折扣</th>
             <th>余额</th>
             <th>邮件地址</th>
             <th>注册日期</th>
->>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
         </tr>
         </thead>
         <tbody>
         {foreach $list as $key=>$vo}
         <tr>
-<<<<<<< HEAD
-            <td>{$vo.log_id}</td>
-            <td>{$vo.admin.user_name}</td>
-            <td>{$vo.log_info}</td>
-            <th>{$vo.log_ip}</th>
-            <td>{$vo.log_time|date="Y-m-d H:i:s",###}</td>
-=======
+
             <td>{$vo.user_id}</td>
             <td>{$vo.nickname}</td>
             <td>{$vo.level_name}</td>
@@ -77,23 +35,13 @@
                 </span>
 
             </td>
->>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
+
         </tr>
         {/foreach}
         </tbody>
     </table>
 </div>
 
-<<<<<<< HEAD
-
-<div class="row">
-    <div class="col-sm-4 text-left"></div>
-    <div class="col-sm-8 text-right">{$list->render()}</div>
-</div>
-
-<!-- 先注掉
-<!-- Optional JavaScript -->
-=======
 {include file="Index@public/page"/}
 
 <!-- 先注掉
@@ -112,10 +60,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
-=======
-
--->
-
 
 <!-- 模态框（Modal） -->
 
@@ -136,7 +80,6 @@
 </div>
 
 <script src="/public/js/user/UserIndex.js"></script>
->>>>>>> 786c8e4fcb39b9f6191507da6a0ff59459bd4f93
 
 </body>
 </html>

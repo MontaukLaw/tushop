@@ -23,13 +23,13 @@ class CaptchaController extends Controller
     public function check($code = '')
     {
         //准备输出用的msg
-        $jmsg = new JsonMsg;
+        $jmsg = null;
         $captcha = new \think\captcha\Captcha();
+
         if (!$captcha->check($code)) {
-            $jmsg->setSuccess(false);
-            $jmsg->setMsg('验证码错误');
+            $jmsg = new JsonMsg(0);
         } else {
-            $jmsg->setSuccess(true);
+            $jmsg = new JsonMsg(1);
         }
 
         return json($jmsg);

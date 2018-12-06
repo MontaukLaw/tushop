@@ -16,11 +16,11 @@ class JsonMsg
     public $obj;
     public $msg;
 
-    public function __construct($request)
+    public function __construct($rowBeenChanged)
     {
         $this->setSuccess(true);
 
-        if ($request > 0) {
+        if ($rowBeenChanged > 0) {
             $this->setSuccess(true);
             $this->setMsg('OK');
 
