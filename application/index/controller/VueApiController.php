@@ -10,6 +10,7 @@ namespace app\index\controller;
 
 use app\util\VueProductType;
 use app\util\VueProduct;
+use app\util\TableDemoData;
 use think\Controller;
 
 class VueApiController extends Controller
@@ -49,8 +50,20 @@ class VueApiController extends Controller
             case "2":
                 $resultArr = new VueProduct($pid, "这是一个烂大街的产品", 200);
                 break;
+            default:
+                $resultArr = new VueProduct($pid, "请输入信息", 0);
         }
 
+        return json($resultArr);
+    }
+
+    public function getTableDemoData()
+    {
+        $resultArr = array(new TableDemoData(true, 40, 'Dickerson', 'McDonald'),
+            new TableDemoData(false, 21, 'Larsen', 'Shaw'),
+            new TableDemoData(false, 89, 'Geneva', 'Wilson'),
+            new TableDemoData(true, 38, 'Jami', 'Carney'),
+        );
         return json($resultArr);
     }
 }
